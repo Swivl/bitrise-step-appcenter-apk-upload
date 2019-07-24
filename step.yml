@@ -1,0 +1,79 @@
+title: |-
+  Deploy to AppCenter - apk & mapping
+summary: |
+  Upload apk and mapping.txt to Microsoft AppCenter
+description: |
+  This step is upload Android apk archive file to AppCenter support mapping.txt.
+website: https://github.com/kanari3/bitrise-step-appcenter-apk-upload
+source_code_url: https://github.com/kanari3/bitrise-step-appcenter-apk-upload
+support_url: https://github.com/kanari3/bitrise-step-appcenter-apk-upload/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+project_type_tags:
+  - android
+
+type_tags:
+  - deploy
+
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  brew:
+  - name: jq
+  - name: curl
+  apt_get:
+  - name: jq
+  - name: curl
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+
+inputs:
+
+  - app_id: $APP_CENTER_RELEASE_NOTE
+    opts:
+      title: AppCenter Release Note
+      summary: for AppCenter Release Note Message
+      description: |
+        Doesn't support markdown format.
+      is_required: false
+
+  - app_id: $APP_PROJECT_NAME
+    opts:
+      title: App Project Name
+      summary: Application Project file name.
+      description: |
+        Target project inclued by setting.gradle
+      is_required: true
+
+  - app_id: $APP_CENTER_APP_ID
+    opts:
+      title: Application Identifier
+      summary: AppCenter application identifier (Owner + App Name).
+      description: |
+        AppCenter Application Identifier is a combination of your Organization/Owner Name
+        and an Application Name.
+        For example: "MyOrganization/MyApplication"
+      is_required: true
+
+  - api_token: $APP_CENTER_ACCESS_TOKEN
+    opts:
+      title: AppCenter API Token
+      description: |
+        [Obtain API Token from AppCenter](https://appcenter.ms/settings/apitokens)
+      is_required: true
+      is_sensitive: true
+
+  - distribution_group: $APP_CENTER_DISTRIBUTION_GROUP
+    opts:
+      title: AppCenter Distribution Group Name
+      description: |
+        For example and default: "Collaborators"
+      is_required: true
