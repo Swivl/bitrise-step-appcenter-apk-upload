@@ -36,24 +36,37 @@ toolkit:
 
 
 inputs:
-
-  - app_id: $APP_CENTER_RELEASE_NOTE
+  - app_project_version_name:
     opts:
-      title: AppCenter Release Note
-      summary: for AppCenter Release Note Message
+      title: App Project Version Name
+      summary: Application Project version name.
       description: |
-        Doesn't support markdown format.
-      is_required: false
-
-  - app_id: $APP_PROJECT_NAME
-    opts:
-      title: App Project Name
-      summary: Application Project file name.
-      description: |
-        Target project inclued by setting.gradle
+        Project version name from build.gradle file
       is_required: true
 
-  - app_id: $APP_CENTER_APP_ID
+  - app_project_version_code:
+    opts:
+      title: App Project Version Code
+      summary: Application Project version code.
+      description: |
+        Project version code from build.gradle file
+      is_required: true
+
+  - app_apk_path:
+    opts:
+      title: App apk path
+      description: |
+        [Obtain from Bitrise]
+      is_required: true
+
+  - app_mapping_path:
+    opts:
+      title: App mapping path
+      description: |
+        [Obtain from Bitrise]
+      is_required: true
+
+  - app_center_app_id:
     opts:
       title: Application Identifier
       summary: AppCenter application identifier (Owner + App Name).
@@ -63,17 +76,26 @@ inputs:
         For example: "MyOrganization/MyApplication"
       is_required: true
 
-  - api_token: $APP_CENTER_ACCESS_TOKEN
+  - app_center_access_token:
     opts:
       title: AppCenter API Token
       description: |
         [Obtain API Token from AppCenter](https://appcenter.ms/settings/apitokens)
       is_required: true
       is_sensitive: true
+      is_expand: true
 
-  - distribution_group: $APP_CENTER_DISTRIBUTION_GROUP
+  - app_center_distribution_group:
     opts:
       title: AppCenter Distribution Group Name
       description: |
         For example and default: "Collaborators"
       is_required: true
+
+  - app_center_release_notes:
+    opts:
+      title: AppCenter Release Note
+      summary: for AppCenter Release Note Message
+      description: |
+        Doesn't support markdown format.
+      is_required: false
